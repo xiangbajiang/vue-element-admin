@@ -59,7 +59,7 @@ export default {
         },
         {
             icon: "el-icon-edit-outline",
-            index: "component",
+            index: "teacher",
             title: "教师信息管理",
             subs: [
             {
@@ -67,7 +67,7 @@ export default {
                 title: "教师注册申请"
             },
             {
-                index: "trees",
+                index: "teacher",
                 title: "教师信息修改",
             },
             ]

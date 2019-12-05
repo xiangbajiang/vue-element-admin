@@ -5,6 +5,7 @@ import Login from "../views/login/Login.vue";
 import Error403 from "../views/error/403.vue";
 import Home from "../views/home/index.vue";
 import Admin from "../views/admin/index.vue";
+import Teacher from "../views/teacher/admin";
 
 Vue.use(VueRouter);
 
@@ -35,6 +36,13 @@ const routes = [
       component: Admin,
       meta: {
         title: "admin"
+      }
+    },
+    {
+      path: "/teacher",
+      component: Teacher,
+      meta: {
+        title: "teacher"
       }
     }]
   }
