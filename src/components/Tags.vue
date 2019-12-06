@@ -33,72 +33,72 @@
 export default {
     created() {
         //判断标签里面是否有值 有的话直接加载
-        if (this.tagsList.length == 0) {
-            this.setTags(this.$route);
-        }
+        // if (this.tagsList.length == 0) {
+        //     this.setTags(this.$route);
+        // }
     },
     computed: {
-        //computed 方法里面没有set方法因此不能使用mapState,需要重新定义set方法
-        tagsList: {
-            get: function() {
-            return this.$store.state.tagsList;
-            },
-            set: function(newValue) {
-            this.$store.commit("TAGES_LIST", newValue);
-            // this.$store.state.tagsList = newValue;
-            }
-        }
+        // //computed 方法里面没有set方法因此不能使用mapState,需要重新定义set方法
+        // tagsList: {
+        //     get: function() {
+        //     return this.$store.state.tagsList;
+        //     },
+        //     set: function(newValue) {
+        //     this.$store.commit("TAGES_LIST", newValue);
+        //     // this.$store.state.tagsList = newValue;
+        //     }
+        // }
     },
     watch: {
         //监听路由变化
-        $route(newValue) {
-            this.setTags(newValue);
-        }
+        // $route(newValue) {
+        //     this.setTags(newValue);
+        // }
     },
     methods: {
         //选中的高亮
-        isActive(path) {
-            return path === this.$route.fullPath;
+        isActive() {
+            // return path === this.$route.fullPath; path
         },
-        handleCommand(command) {
-            if (command == "closeOther") {
-            // 关闭其他标签
-            const curItem = this.tagsList.filter(item => {
-                return item.path === this.$route.fullPath;
-            });
-            this.tagsList = curItem;
-            }
+        handleCommand() {
+            // if (command == "closeOther") { command
+            // // 关闭其他标签
+            // const curItem = this.tagsList.filter(item => {
+            //     return item.path === this.$route.fullPath;
+            // });
+            // this.tagsList = curItem;
+            // }
         },
         //添加标签
-        setTags(route) {
-            let isIn = this.tagsList.some(item => {
-            //判断标签是否存在
-            return item.path === route.fullPath;
-            });
-            //不存在
-            if (!isIn) {
-                // 判断当前的标签个数
-                if (this.tagsList.length >= 10) {
-                    //messages("warning", "当标签大于10个，请关闭后再打开");
-                } else {
-                    this.tagsList.push({
-                    title: route.meta.title,
-                    path: route.fullPath,
-                    name: route.name
-                    });
-                    //存到vuex
-                    this.$store.commit("TAGES_LIST", this.tagsList);
-                }
-            }
+        setTags() {
+            // let isIn = this.tagsList.some(item => {route
+            // //判断标签是否存在
+            // return item.path === route.fullPath;
+            // });
+            // //不存在
+            // if (!isIn) {
+            //     // 判断当前的标签个数
+            //     if (this.tagsList.length >= 10) {
+            //         //messages("warning", "当标签大于10个，请关闭后再打开");
+            //     } else {
+            //         this.tagsList.push({
+            //         title: route.meta.title,
+            //         path: route.fullPath,
+            //         name: route.name
+            //         });
+            //         //存到vuex
+            //         this.$store.commit("TAGES_LIST", this.tagsList);
+            //     }
+            // }
         },
         closeTags() {
-            console.log(this.tagsList.length);
-            if (this.tagsList.length == 1) {
-                //messages("warning", "不可全都关闭");
-            } else {
-            //删除当前
-                this.$store.commit("TAGES_LIST", this.tagsList);
-            }
+            // console.log(this.tagsList.length);
+            // if (this.tagsList.length == 1) {
+            //     //messages("warning", "不可全都关闭");
+            // } else {
+            // //删除当前
+            //     this.$store.commit("TAGES_LIST", this.tagsList);
+            // }
         }
     }
 };
