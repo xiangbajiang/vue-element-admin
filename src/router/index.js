@@ -24,27 +24,29 @@ const routes = [
     path: "/home",
     name: "home",
     component: HomePages,
-    children: [{
-      path: "/home",
-      component: Home,
-      meta: {
-        title: "home"
+    children: [
+      {
+        path: "/home",
+        component: Home,
+        meta: {
+          title: "home"
+        }
+      },
+      {
+        path: "/admin",
+        component: Admin,
+        meta: {
+          title: "admin"
+        }
+      },
+      {
+        path: "/teacher",
+        component: Teacher,
+        meta: {
+          title: "teacher"
+        }
       }
-    },
-    {
-      path: "/admin",
-      component: Admin,
-      meta: {
-        title: "admin"
-      }
-    },
-    {
-      path: "/teacher",
-      component: Teacher,
-      meta: {
-        title: "teacher"
-      }
-    }]
+    ]
   }
 ];
 

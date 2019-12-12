@@ -41,15 +41,17 @@
         @current-change="current_change">
       </el-pagination>
     </el-row>
-    <Details :dialogData="dialogPara.data" :dialogVis="dialogPara.visible" @dialogClose="dialogClose"></Details>
+    <Details :dialogData="dialogPara.data" :dialogVis="dialogPara.DetailsVisible" @dialogClose="dialogDetailsClose"></Details>
+    <MyForm :dialogData="dialogPara.data" :dialogVis="dialogPara.MyFormVisisble" @dialogClose="dialogMyFormClose"></MyForm>
   </div>
 </template>
 
 <script>
-  import Details from "./components/Details"
+  import Details from "./components/Details";
+  import MyForm from "./components/MyForm"
   export default {
     name: "admin",
-    components: { Details },
+    components: { Details, MyForm },
     data() {
       return {
         condition_name: "", //按姓名查找
@@ -59,7 +61,8 @@
           total: 11
         },
         dialogPara: {
-          visible: false,
+          DetailsVisible: false,
+          MyFormVisisble: false,
           data: {}
         },
         tableData: [{
@@ -146,13 +149,30 @@
       handleClick(row) {
         console.log(row);
         this.dialogPara.data = row;
-        this.dialogPara.visible = !this.dialogPara.visible;
+        this.dialogPara.DetailsVisible = !this.dialogPara.DetailsVisible;
       },
       handleEdit(index, row){
-        console.log(row);
+        console.log(index, row);
+        this.dialogPara.data = row;
+        this.dialogPara.MyFormVisisble = !this.dialogPara.MyFormVisisble;
       },
       handleDelete(index, row){
         console.log(index, row)
+        this.$confirm('此操作将禁用该用户, 是否继续?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          this.$message({
+            type: 'success',
+            message: '删除成功!'
+          });
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: '已取消删除'
+          });          
+        });
       },
       current_change(currentPage){
         this.currentPage = currentPage;
@@ -160,8 +180,11 @@
       searchByName(){
         console.log(this.condition_name);
       },
-      dialogClose(value){
-        this.dialogPara.visible = value;
+      dialogDetailsClose(value){
+        this.dialogPara.DetailsVisible = value;
+      },
+      dialogMyFormClose(value){
+        this.dialogPara.MyFormVisisble = value;
       }
     }
   }

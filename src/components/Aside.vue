@@ -47,90 +47,99 @@ export default {
     return {
     //配置目录
         items: [
-        {
-            icon: "el-icon-edit-outline",
-            index: "home",
-            title: "系统首页"
-        },
-        {
-            icon: "el-icon-edit-outline",
-            index: "admin",
-            title: "管理员信息管理"
-        },
-        {
-            icon: "el-icon-edit-outline",
-            index: "teacher",
-            title: "教师信息管理",
-            subs: [
             {
-                index: "editor",
-                title: "教师注册申请"
+                icon: "el-icon-edit-outline",
+                index: "home",
+                title: "系统首页"
             },
             {
-                index: "teacher",
-                title: "教师信息修改",
-            },
-            ]
-        },
-        {
-            icon: "el-icon-edit-outline",
-            index: "draggable",
-            title: "获奖资料管理",
-            subs: [
-            {
-                index: "draglist",
-                title: "资料上传"
+                icon: "el-icon-edit-outline",
+                index: "admin",
+                title: "管理员信息管理"
             },
             {
-                index: "dragtable",
-                title: "资料修改"
+                icon: "el-icon-edit-outline",
+                index: "query",
+                title: "教师信息管理",
+                subs: [
+                    {
+                        index: "editor",
+                        title: "教师注册申请"
+                    },
+                    {
+                        index: "teacher",
+                        title: "教师信息修改",
+                    }
+                ]
+            },
+            {
+                icon: "el-icon-edit-outline",
+                index: "add",
+                title: "获奖资料管理",
+                subs: [
+                    {
+                        index: "draglist",
+                        title: "资料上传"
+                    },
+                    {
+                        index: "dragtable",
+                        title: "资料修改"
+                    }
+                ]
+            },
+            {
+                icon: "el-icon-edit-outline",
+                index: "export",
+                title: "专家导出",
+                subs: [
+                    {
+                        index: "draglist",
+                        title: "资料上传"
+                    },
+                    {
+                        index: "dragtable",
+                        title: "资料修改"
+                    }
+                ]
+            },
+            {
+                icon: "el-icon-edit-outline",
+                index: "topic",
+                title: "新词发现"
+            },
+            {
+                icon: "el-icon-edit-outline",
+                index: "recommend",
+                title: "推荐专家",
+                subs: [
+                    {
+                        index: "permission",
+                        title: "权限测试"
+                    },
+                    {
+                        index: "404",
+                        title: "404页面"
+                    }
+                ]
             }
-            ]
-        },
-        {
-            icon: "el-icon-edit-outline",
-            index: "charts",
-            title: "图表",
-            subs: [
-            {
-                index: "cricle",
-                title: "饼图"
-            },
-            ]
-        },
-        {
-            icon: "el-icon-edit-outline",
-            index: "7",
-            title: "错误处理",
-            subs: [
-            {
-                index: "permission",
-                title: "权限测试"
-            },
-            {
-                index: "404",
-                title: "404页面"
-            }
-            ]
-        },
         ]
     };
     },
     computed: {
-    onRoutes() {
-        return this.$route.path.replace("/", "");
-    },
-    ...mapState(["isCollapse"]) //从vuex里面获取菜单是否折叠
+        onRoutes() {
+            return this.$route.path.replace("/", "");
+        },
+        ...mapState(["isCollapse"]) //从vuex里面获取菜单是否折叠
     },
     methods: {
-    //下拉展开
-    handleOpen(key, keyPath) {
-        console.log(key, keyPath);
-    },
-    //下来关闭
-    handleClose(key, keyPath) {
-        console.log(key, keyPath);
-    }
+        //下拉展开
+        handleOpen(key, keyPath) {
+            console.log(key, keyPath);
+        },
+        //下来关闭
+        handleClose(key, keyPath) {
+            console.log(key, keyPath);
+        }
     }
 };
 </script>

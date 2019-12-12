@@ -27,16 +27,18 @@
                     src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3266090804,66355162&fm=26&gp=0.jpg"
                     class="user-avatar"
                 >
-                {{username }}<i class="el-icon-caret-bottom"/>
+                {{ avatar }}<i class="el-icon-caret-bottom"/>
                 </div>
                 <el-dropdown-menu slot="dropdown" class="user-dropdown">
-                <router-link class="inlineBlock" to="/">
+                  <router-link class="inlineBlock" to="/home">
                     <el-dropdown-item>首页</el-dropdown-item>
-                </router-link>
-                <el-dropdown-item>个人设置</el-dropdown-item>
-                <el-dropdown-item divided>
-                    <span style="display:block;" @click="logout">退出登陆</span>
-                </el-dropdown-item>
+                  </router-link>
+                  <router-link to="/admin">
+                    <el-dropdown-item>个人设置</el-dropdown-item>
+                  </router-link>
+                  <el-dropdown-item divided>
+                      <span style="display:block;" @click="logout">退出登陆</span>
+                  </el-dropdown-item>
                 </el-dropdown-menu>
             </el-dropdown>
             </div>
@@ -45,41 +47,53 @@
 </template>
 
 <script>
-import showAside from "@/components/showAside.vue";//引入了一个侧边栏是否折叠的组件
+import showAside from "./showAside.vue";//引入了一个侧边栏是否折叠的组件
 export default {
-    // name:'header',
+    //name:'header',
     components: {
         showAside
     },
     data() {
-    return {
-        fullscreen: false,
-        name: "linxin",
-        message: 2,
-        username: "zyh"
-    };
+      return {
+          fullscreen: false,
+      };
     },
     computed: {
-    isCollapse: {
+      isCollapse: {
+          get: function() {
+            return this.$store.state.system.collapse;
+          },
+          set: function(data) {
+            console.log(data);
+            this.$store.commit("system/SET_COLLAPSE", data);//提交到vuex
+          }
+      },
+      name: {
         get: function() {
-        return this.$store.state.isCollapse;
-        },
-        set: function(newValue) {
-        console.log(newValue);
-        this.$store.commit("IS_COLLAPSE", newValue);//提交到vuex
+          return this.$store.state.user.name;
         }
-    }
+      },
+      avatar:{
+        get: function() {
+          return this.$store.state.user.avatar;
+        }
+      },
+      message:{
+        get: function() {
+          return this.$store.state.user.message;
+        }
+      }
     },
     methods: {
-    toggleClick() {
-        this.isCollapse = !this.isCollapse;
-    },
-    // 用户名下拉菜单选择事件
-    logout() {
-        this.$router.push("/login");
-    },
-    // 全屏事件
-    handleFullScreen() {
+      toggleClick() {
+          this.isCollapse = !this.isCollapse;
+      },
+      // 用户名下拉菜单选择事件
+      logout() {
+          this.$router.push("/");
+      },
+      // 全屏事件
+      handleFullScreen() {
         let element = document.documentElement;
         if (this.fullscreen) {
         if (document.exitFullscreen) {
@@ -104,7 +118,7 @@ export default {
         }
         }
         this.fullscreen = !this.fullscreen;
-    }
+      }
     }
 };
 </script>

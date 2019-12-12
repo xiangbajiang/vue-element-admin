@@ -46,7 +46,7 @@ export default {
     methods: {
         closeDialog(){
             this.vis = false;
-            this.$emit("dialogClose", false);
+            this.$emit("dialogDetailsClose", false);
         }
     },
 }

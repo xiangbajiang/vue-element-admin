@@ -4,7 +4,7 @@
     <div class="login-form">
     <el-row :gutter="20">
       <el-col :lg="6" :sm="10" class="aa">
-          <h3>获奖材料管理系统</h3>
+          <h3>专家管理系统</h3>
           <el-form
             :model="ruleForm2"
             status-icon
@@ -18,12 +18,6 @@
             </el-form-item>
             <el-form-item prop="password">
               <el-input type="password" v-model="ruleForm2.password" autocomplete="off" show-password></el-input>
-            </el-form-item>
-            <el-form-item prop="identity">
-              <el-radio-group v-model="ruleForm2.identity">
-                <el-radio label="教师"></el-radio>
-                <el-radio label="管理员"></el-radio>
-              </el-radio-group>
             </el-form-item>
             <el-form-item>
               <el-button type="primary" @click="submitForm('ruleForm2')">提交</el-button>
@@ -61,23 +55,14 @@ export default {
         callback();
       }
     };
-    var validateIdentity = (rule, value, callback) => {
-      if (value === "") {
-        callback(this.$message("请选择用户身份"));
-      } else {
-        callback();
-      }
-    };
     return {
       ruleForm2: {
         password: "admin",
-        username: "admin",
-        identity: ""
+        username: "admin"
       },
       rules2: {
         password: [{ validator: validatePass, trigger: "blur" }],
-        username: [{ validator: validateName, trigger: "blur" }],
-        identity: [{ validator: validateIdentity, trigger: "blur" }],
+        username: [{ validator: validateName, trigger: "blur" }]
       }
     };
   },
@@ -85,15 +70,13 @@ export default {
      submitForm(formName) {
       this.$refs[formName].validate(valid => {
         console.log(valid)
-        console.log(this.ruleForm2.identity)
         if (valid) {
           //this.$store.commit("COMMIT_ROLE", roles);
           login(this.ruleForm2)
             .then(res => {
               console.log(res)
-              //提交数据到vuex
+              this.$message('success', res.message);
               //this.$store.commit("COMMIT_TOKEN", res);
-              this.$message('success',res.message)
               this.$router.push({
                 path: "/home"
               });
