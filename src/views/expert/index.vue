@@ -2,26 +2,44 @@
   <div class="app-container">
     <el-row class="teacher-admin-research" type="flex">
       <el-col :span="4">
-        <el-input v-model="condition_name" placeholder="姓名"  suffix-icon="el-icon-search"></el-input>
+        <el-input v-model="condition.name" placeholder="姓名"  suffix-icon="el-icon-search"></el-input>
       </el-col>
-      <el-col :span="6">
+      <el-col :span="4">
+        <el-input v-model="condition.unit" placeholder="工作单位"  suffix-icon="el-icon-search"></el-input>
+      </el-col>
+      <el-col :span="4">
         <el-button icon="el-icon-search" type="primary" @click="searchByName">搜索</el-button>
         <el-button icon="el-icon-edit" type="primary">添加</el-button>
-        <el-button icon="el-icon-download" type="primary">导出</el-button>
       </el-col>
     </el-row>
+    <el-divider content-position="left">相似专家列表</el-divider>
     <el-table
         :data="tableData.slice( ( pages.currentPage - 1) * pages.pagesize, pages.currentPage * pages.pagesize )"
         stripe
         border
         lazy
         style="width: 100%">
-        <el-table-column fixed prop="date" label="日期"></el-table-column>
-        <el-table-column prop="name" label="姓名"></el-table-column>
-        <el-table-column prop="province" label="省份"></el-table-column>
-        <el-table-column prop="city" label="市区"> </el-table-column>
-        <el-table-column prop="address" label="地址"></el-table-column>
-        <el-table-column prop="zip" label="邮编"></el-table-column>
+        <el-table-column fixed prop='expert_id' label='ID'></el-table-column>
+        <el-table-column fixed prop='name_ch' label='中文名'></el-table-column>
+        <el-table-column prop='unit' label='工作单位'></el-table-column>
+        <el-table-column prop='name_en' label='英文名'></el-table-column>
+        <el-table-column prop='mail' label='电子邮件'></el-table-column>
+        <el-table-column prop='title' label='职称'></el-table-column>
+        <el-table-column prop='degree' label='学位'></el-table-column>
+        <el-table-column prop='mobile_phone' label='移动电话'></el-table-column>
+        <el-table-column prop='office_phone' label='固定电话'></el-table-column>
+        <el-table-column prop='profession' label='所学专业'></el-table-column>
+        <el-table-column prop='research' label='研究方向'></el-table-column>
+        <el-table-column prop='label' label='领域标签'></el-table-column>
+        <el-table-column prop='graduated' label='毕业院校'></el-table-column>
+        <el-table-column prop='birth_date' label='出生日期'></el-table-column>
+        <el-table-column prop='nationality' label='国籍'></el-table-column>
+        <el-table-column prop='career' label='职业'></el-table-column>
+        <el-table-column prop='people' label='民族'></el-table-column>
+        <el-table-column prop='birth_place' label='出生地'></el-table-column>
+        <el-table-column prop='achievement' label='主要成就'></el-table-column>
+        <el-table-column prop='origan' label='来源'></el-table-column>
+        <el-table-column prop='add_date' label='添加时间'></el-table-column>
         <el-table-column fixed="right" label="操作" width="210">
           <template slot-scope="scope">
             <el-button @click="handleClick(scope.row)" size="small">查看</el-button>
@@ -54,95 +72,21 @@
     components: { Details, MyForm },
     data() {
       return {
-        condition_name: "", //按姓名查找
+        condition: {
+          name: "", //按姓名查找
+          unit: ""
+        },
         pages: {
           pagesize: 10,
           currentPage: 1,
-          total: 11
+          total: 0
         },
         dialogPara: {
           DetailsVisible: false,
           MyFormVisisble: false,
           data: {}
         },
-        tableData: [{
-          date: '2016-05-02',
-          name: '王小虎',
-          province: '上海',
-          city: '普陀区',
-          address: '上海市普陀区金沙江路 1518 弄',
-          zip: 200333
-        }, {
-          date: '2016-05-04',
-          name: '王小虎',
-          province: '上海',
-          city: '普陀区',
-          address: '上海市普陀区金沙江路 1517 弄',
-          zip: 200333
-        }, {
-          date: '2016-05-01',
-          name: '王小虎',
-          province: '上海',
-          city: '普陀区',
-          address: '上海市普陀区金沙江路 1519 弄',
-          zip: 200333
-        }, {
-          date: '2016-05-03',
-          name: '王小虎',
-          province: '上海',
-          city: '普陀区',
-          address: '上海市普陀区金沙江路 1516 弄',
-          zip: 200333
-        }, {
-          date: '2016-05-04',
-          name: '王小虎',
-          province: '上海',
-          city: '普陀区',
-          address: '上海市普陀区金沙江路 1517 弄',
-          zip: 200333
-        }, {
-          date: '2016-05-01',
-          name: '王小虎',
-          province: '上海',
-          city: '普陀区',
-          address: '上海市普陀区金沙江路 1519 弄',
-          zip: 200333
-        }, {
-          date: '2016-05-03',
-          name: '王小虎',
-          province: '上海',
-          city: '普陀区',
-          address: '上海市普陀区金沙江路 1516 弄',
-          zip: 200333
-        }, {
-          date: '2016-05-04',
-          name: '王小虎',
-          province: '上海',
-          city: '普陀区',
-          address: '上海市普陀区金沙江路 1517 弄',
-          zip: 200333
-        }, {
-          date: '2016-05-01',
-          name: '王小虎',
-          province: '上海',
-          city: '普陀区',
-          address: '上海市普陀区金沙江路 1519 弄',
-          zip: 200333
-        }, {
-          date: '2016-05-03',
-          name: '王小虎',
-          province: '上海',
-          city: '普陀区',
-          address: '上海市普陀区金沙江路 1516 弄',
-          zip: 200333
-        }, {
-          date: '2016-05-04',
-          name: '王小虎',
-          province: '上海',
-          city: '普陀区',
-          address: '上海市普陀区金沙江路 1517 弄',
-          zip: 200333
-        }]
+        tableData: []
       }
     },
     methods: {

@@ -5,7 +5,9 @@ import Login from "../views/login/Login.vue";
 import Error403 from "../views/error/403.vue";
 import Home from "../views/home/index.vue";
 import Admin from "../views/admin/index.vue";
-import Teacher from "../views/teacher/admin";
+import Expert from "../views/expert/index";
+import Topic from "../views/topic/index";
+import Add from "../views/expert/add";
 
 Vue.use(VueRouter);
 
@@ -40,10 +42,24 @@ const routes = [
         }
       },
       {
-        path: "/teacher",
-        component: Teacher,
+        path: "/expert",
+        component: Expert,
         meta: {
-          title: "teacher"
+          title: "expert"
+        }
+      },
+      {
+        path: "/add",
+        component: Add,
+        meta: {
+          title: "add"
+        }
+      },
+      {
+        path: "/topic",
+        component: Topic,
+        meta: {
+          title: "topic"
         }
       }
     ]

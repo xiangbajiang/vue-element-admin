@@ -59,31 +59,16 @@ export default {
             },
             {
                 icon: "el-icon-edit-outline",
-                index: "query",
-                title: "教师信息管理",
+                index: "expert",
+                title: "专家管理",
                 subs: [
                     {
-                        index: "editor",
-                        title: "教师注册申请"
+                        index: "expert",
+                        title: "专家查询"
                     },
                     {
-                        index: "teacher",
-                        title: "教师信息修改",
-                    }
-                ]
-            },
-            {
-                icon: "el-icon-edit-outline",
-                index: "add",
-                title: "获奖资料管理",
-                subs: [
-                    {
-                        index: "draglist",
-                        title: "资料上传"
-                    },
-                    {
-                        index: "dragtable",
-                        title: "资料修改"
+                        index: "add",
+                        title: "专家新增",
                     }
                 ]
             },
@@ -93,34 +78,44 @@ export default {
                 title: "专家导出",
                 subs: [
                     {
-                        index: "draglist",
-                        title: "资料上传"
+                        index: "export/all",
+                        title: "专家汇总表"
                     },
                     {
-                        index: "dragtable",
-                        title: "资料修改"
+                        index: "export/total",
+                        title: "评审表信息"
+                    },
+                    {
+                        index: "",
+                        title: "校对专家信息表"
+                    },
+                    {
+                        index: "export/add",
+                        title: "新增专家信息表"
+                    },
+                    {
+                        index: "export/repeat",
+                        title: "爬取与评审表重合专家"
+                    },
+                    {
+                        index: "export/not",
+                        title: "未校对专家信息表"
+                    },
+                    {
+                        index: "export/sql",
+                        title: "库文件导出"
                     }
                 ]
             },
             {
                 icon: "el-icon-edit-outline",
                 index: "topic",
-                title: "新词发现"
+                title: "标签词推荐"
             },
             {
                 icon: "el-icon-edit-outline",
                 index: "recommend",
-                title: "推荐专家",
-                subs: [
-                    {
-                        index: "permission",
-                        title: "权限测试"
-                    },
-                    {
-                        index: "404",
-                        title: "404页面"
-                    }
-                ]
+                title: "扩充专家"
             }
         ]
     };
