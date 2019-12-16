@@ -8,12 +8,18 @@ import Admin from "../views/admin/index.vue";
 import Expert from "../views/expert/index";
 import Topic from "../views/topic/index";
 import Add from "../views/expert/add";
+import Export from "../views/export/index";
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: "/",
+    name: "login",
+    component: Login
+  },
+  {
+    path: "/login",
     name: "login",
     component: Login
   },
@@ -53,6 +59,13 @@ const routes = [
         component: Add,
         meta: {
           title: "add"
+        }
+      },
+      {
+        path: "/export",
+        component: Export,
+        meta: {
+          title: "export"
         }
       },
       {

@@ -68,7 +68,8 @@ import {
   Message,
   Notification,
   Divider,
-  Scrollbar
+  Scrollbar,
+  Backtop
 } from "element-ui";
 
 Vue.use(Pagination);
@@ -136,6 +137,7 @@ Vue.use(Main);
 Vue.use(Footer);
 Vue.use(Divider);
 Vue.use(Scrollbar);
+Vue.use(Backtop);
 
 Vue.use(Loading.directive);
 

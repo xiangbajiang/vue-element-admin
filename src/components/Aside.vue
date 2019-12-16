@@ -18,12 +18,11 @@
             </template>
             <template v-for="subItem in item.subs">
                 <el-submenu v-if="subItem.subs" :index="subItem.index" :key="subItem.index">
-                <template slot="title">{{ subItem.title }}</template>
-                <el-menu-item
-                    v-for="(threeItem,i) in subItem.subs"
-                    :key="i"
-                    :index="threeItem.index"
-                >{{ threeItem.title }}</el-menu-item>
+                    <template slot="title">{{ subItem.title }}</template>
+                    <el-menu-item
+                        v-for="(threeItem,i) in subItem.subs"
+                        :key="i"
+                        :index="threeItem.index">{{ threeItem.title }}</el-menu-item>
                 </el-submenu>
                 <el-menu-item v-else :index="subItem.index" :key="subItem.index">{{ subItem.title }}</el-menu-item>
             </template>
@@ -76,36 +75,6 @@ export default {
                 icon: "el-icon-edit-outline",
                 index: "export",
                 title: "专家导出",
-                subs: [
-                    {
-                        index: "export/all",
-                        title: "专家汇总表"
-                    },
-                    {
-                        index: "export/total",
-                        title: "评审表信息"
-                    },
-                    {
-                        index: "",
-                        title: "校对专家信息表"
-                    },
-                    {
-                        index: "export/add",
-                        title: "新增专家信息表"
-                    },
-                    {
-                        index: "export/repeat",
-                        title: "爬取与评审表重合专家"
-                    },
-                    {
-                        index: "export/not",
-                        title: "未校对专家信息表"
-                    },
-                    {
-                        index: "export/sql",
-                        title: "库文件导出"
-                    }
-                ]
             },
             {
                 icon: "el-icon-edit-outline",
